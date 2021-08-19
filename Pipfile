@@ -7,6 +7,8 @@ name = "pypi"
 fastapi = "*"
 motor = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+speechrecognition = "*"
+pipwin = "*"
 
 [dev-packages]
 
