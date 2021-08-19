@@ -6,7 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from config.config import settings
 
 # Import routes
-
+from routers.apiRoutes import router as api_router
 
 
 # Init app
@@ -26,6 +26,7 @@ async def shutdown_db_client():
 
 
 # Include routers
+app.include_router(api_router, tags=["Api route"])
 
 
 @app.get("/")
