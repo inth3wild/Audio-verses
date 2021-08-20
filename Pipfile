@@ -9,6 +9,9 @@ motor = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 speechrecognition = "*"
 pipwin = "*"
+jinja2 = "*"
+aiofiles = "*"
+python-multipart = "*"
 
 [dev-packages]
 

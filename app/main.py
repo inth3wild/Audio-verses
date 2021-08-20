@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from motor.motor_asyncio import AsyncIOMotorClient
 from config.config import settings
+from fastapi.staticfiles import StaticFiles
 
 # Import routes
 from routers.apiRoutes import router as api_router
@@ -11,6 +12,8 @@ from routers.apiRoutes import router as api_router
 
 # Init app
 app = FastAPI()
+app.mount("/templates/static", StaticFiles(directory="templates/static"), name="static")
+
 
 # Init DB
 @app.on_event("startup")
@@ -28,11 +31,6 @@ async def shutdown_db_client():
 # Include routers
 app.include_router(api_router, tags=["Api route"])
 
-
-@app.get("/")
-@app.get("/home")
-async def home_route():
-    return {"message": "Welcome to the home route"}
 
 
 
