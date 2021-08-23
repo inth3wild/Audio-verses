@@ -12,6 +12,7 @@ pipwin = "*"
 jinja2 = "*"
 aiofiles = "*"
 python-multipart = "*"
+httpx = "*"
 
 [dev-packages]
 
