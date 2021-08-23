@@ -40,11 +40,12 @@ async def process_file(input: InputBase):
         audio = r.record(source)
 
     try:
-        voice_text  = r.recognize_google(audio)
-        print(voice_text)
-        # if input.function_type == "search":
-        #     input.query = voice_text
-        #     return search(**input.dict())
+        # voice_text  = r.recognize_google(audio)
+        # print(voice_text)
+        if input.function_type == "search":
+            # input.query = voice_text
+            input.query = "Luke.7.6-Luke.7.10"
+            return search(**input.dict())
     except sr.UnknownValueError:
         # Handle unrecognizable speech
         print("Sorry the audio file can not be translated")
