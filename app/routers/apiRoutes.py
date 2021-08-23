@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request, Response, File, UploadFile
 # from models.token import create_access_token, TokenData
-from models.audio import AudioIn
+from models.api import InputBase
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse
 from config.config import settings
@@ -31,18 +31,18 @@ async def listen():
 
 
 @router.post("/process", status_code=200)
-async def process_file(audio_in: AudioIn):
-    audio_file = Path.cwd()/'audio-files'/f"{audio_in.audio_id}.wav" 
-
+async def process_file(input: InputBase):
+    audio_file = Path.cwd()/'audio-files'/f"{input.audio_id}.wav" 
     audio_file_type = sr.AudioFile( str(audio_file) )
+
     with audio_file_type as source:
         r.adjust_for_ambient_noise(source, duration=0.1)
         audio = r.record(source)
 
     try:
-        # speech_text  = r.recognize_google(audio)
-        # print(speech_text)
-        search()
+        # voice_text  = r.recognize_google(audio)
+        # print(voice_text)
+        search(bible_version_id=input.bible_version_id, query="gnash")
     except sr.UnknownValueError:
         # Handle unrecognizable speech
         print("Sorry the audio file can not be translated")
