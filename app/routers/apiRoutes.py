@@ -33,10 +33,16 @@ async def listen():
 async def process_file(audio_in: AudioIn):
     audio_file = Path.cwd()/'audio-files'/f"{audio_in.audio_id}.wav" 
 
-    my = sr.AudioFile( str(audio_file) )
-    with my as source:
+    audio_file_type = sr.AudioFile( str(audio_file) )
+    with audio_file_type as source:
+        r.adjust_for_ambient_noise(source, duration=0.1)
         audio = r.record(source)
 
-    print ( r.recognize_google(audio) )
-    # print(audio_in.audio_id)
-    return {"msg":"good"}
+    try:
+        speech_text  = r.recognize_google(audio)
+        print(speech_text)
+    except sr.UnknownValueError:
+        # Handle unrecognizable speech
+        print("Sorry the audio file can not be translated")
+
+    return {"msg":"transcription was good"}
