@@ -10,6 +10,7 @@ class Base(BaseSettings):
 class CommonSettings(Base):
     APP_NAME: str = "Audio verses"
     DEBUG_MODE: bool
+    API_BIBLE_API_KEY: str
 
 class ServerSettings(Base):
     HOST: str = "127.0.0.1"

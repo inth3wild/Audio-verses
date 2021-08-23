@@ -8,6 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 import speech_recognition as sr
 from pathlib import Path
+from apis.requests import search
 
 
 r = sr.Recognizer()
@@ -39,8 +40,9 @@ async def process_file(audio_in: AudioIn):
         audio = r.record(source)
 
     try:
-        speech_text  = r.recognize_google(audio)
-        print(speech_text)
+        # speech_text  = r.recognize_google(audio)
+        # print(speech_text)
+        search()
     except sr.UnknownValueError:
         # Handle unrecognizable speech
         print("Sorry the audio file can not be translated")
