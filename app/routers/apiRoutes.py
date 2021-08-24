@@ -44,7 +44,7 @@ async def process_file(input: InputBase):
         # print(voice_text)
         if input.function_type == "search":
             # input.query = voice_text
-            input.query = "Luke.7.6-Luke.7.10"
+            input.query = "Luke.7.6-10"
             return search(**input.dict())
     except sr.UnknownValueError:
         # Handle unrecognizable speech
