@@ -9,6 +9,7 @@ from fastapi.templating import Jinja2Templates
 import speech_recognition as sr
 from pathlib import Path
 from apis.requests import search
+from utilities.strip_keywords import strip_keywords
 
 
 r = sr.Recognizer()
@@ -40,11 +41,15 @@ async def process_file(input: InputBase):
         audio = r.record(source)
 
     try:
-        # voice_text  = r.recognize_google(audio)
+        voice_text  = r.recognize_google(audio)
+        voice_text = voice_text.lower()
         # print(voice_text)
         if input.function_type == "search":
-            # input.query = voice_text
-            input.query = "Luke.7.6-10"
+            input.query = voice_text
+            # input.query = "Luke.7.6-10"
+            if "chapter" and "verse" and "to" in voice_text:
+                input.query = strip_keywords(voice_text)
+
             return search(**input.dict())
     except sr.UnknownValueError:
         # Handle unrecognizable speech
