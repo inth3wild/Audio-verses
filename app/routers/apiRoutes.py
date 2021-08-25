@@ -33,7 +33,7 @@ async def listen():
 
 @router.post("/process", status_code=200)
 async def process_file(input: InputBase):
-    audio_file = Path.cwd()/'audio-files'/f"{input.audio_id}.wav" 
+    audio_file = Path.cwd()/'audios'/f"{input.audio_id}.wav" 
     audio_file_type = sr.AudioFile( str(audio_file) )
 
     with audio_file_type as source:
