@@ -41,14 +41,14 @@ async def process_file(input: InputBase):
         audio = r.record(source)
 
     try:
-        voice_text  = r.recognize_google(audio)
-        voice_text = voice_text.lower()
+        # voice_text  = r.recognize_google(audio)
+        # voice_text = voice_text.lower()
         # print(voice_text)
         if input.function_type == "search":
-            input.query = voice_text
-            # input.query = "Luke.7.6-10"
-            if "chapter" and "verse" and "to" in voice_text:
-                input.query = strip_keywords(voice_text)
+            input.query = "luke.3.10-11"
+            # input.query = voice_text
+            # if "chapter" and "verse" and "to" in voice_text:
+                # input.query = strip_keywords(voice_text)
 
             return search(**input.dict())
     except sr.UnknownValueError:
