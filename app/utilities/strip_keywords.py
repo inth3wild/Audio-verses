@@ -7,4 +7,5 @@ def strip_keywords(voice_text):
 
     # replace '.-.' to '-' for accurate search results to be in this format Luke.7.6-10
     voice_text = voice_text.replace(".-.", "-")
+    # print(voice_text)
     return voice_text

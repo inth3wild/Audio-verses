@@ -17,7 +17,7 @@ def search(**kwargs):
     bible_version_id = bible_ids.get( kwargs.get('bible_version_id') )
     search_endpoint = base_url + f"{bible_version_id}/search"
     params = {
-        "query": kwargs.get('query'),   # Keyword to search
+        "query": kwargs.get('query')   # Keyword to search
     }
 
     response = httpx.get(search_endpoint, params=params, headers=headers)
