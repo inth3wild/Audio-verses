@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Verses</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+    crossorigin="anonymous"
+    />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+  <body>
+    <!-- Navbar -->
+    <div class="container">
+        <nav class="navbar navbar-light sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="bi bi-soundwave"></i> Audio Verses</a>      
+    
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group btn-group-lg me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn active" data-bs-toggle="button" id="light"><i class="bi bi-brightness-high"></i></button>
+                      <button type="button" class="btn" id="dark"><i class="bi bi-moon-fill"></i></button>
+                    </div>
+                </div>                        
+        
+            </div>                    
+        </nav>
+    </div>
+   
+
+
+    <!-- Intro -->
+    <section id="intro">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        <div class="display-4">
+                            Voice powered bible search.
+                        </div>
+                    </h1>
+                        <p class="lead">
+                            Choose from a variety of bible versions and bible languages to search with <br> 
+                            voice input for verses, keywords, references etc.
+                        </p>
+
+                        <div class="lead fw-lighter font-monospace">
+                            <span>
+                                Say:
+                            </span>
+                            <p id="typewriter" class="d-inline">
+                            </p>
+                        </div>
+                        
+                </div>
+                
+                <div class="col-md-3 py-3">
+                    <div class="">
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>Choose Bible Language</option>
+                            <option value="1">English</option>
+                            <option value="1">Arabic</option>
+                            <option value="2">Dutch</option>
+                            <option value="3">German</option>
+                            <option value="4">Hausa</option>
+                            <option value="5">Hindi</option>
+                            <option value="6">Italian</option>
+                            <option value="7">Portuguese</option>
+                            <option value="8">Spanish</option>
+                            <option value="9">Yoruba</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-1 pt-2">
+                    <button type="button" class="btn btn-primary" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#content" 
+                    aria-expanded="false" aria-controls="collapseExample"> 
+                        <i class="bi bi-mic"></i>  Start recording
+                    </button>
+
+                    <button id="switch-context" class="btn btn-danger">
+                        switch-context
+                    </button>
+                  
+                </div>
+                    
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Result -->
+    <section id="search-result">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="collapse" id="content">
+                        <!-- Verse Search Result -->
+                        <div class="card card-body border-0 bg-light" id="verse-result" style="display: none;">
+                            <p class="fs-5">
+                                GENESIS 1:5-7
+                            </p>
+                            <p class="p lead">
+                                <span data-number="5" data-sid="GEN 1:5" class="v font-monospace fs-6 mb-5 text-muted">5</span>And God called the light Day, and the darkness he called Night. 
+                                And there was evening and there was morning, one day. 
+                                <span data-number="6" data-sid="GEN 1:6" class="v font-monospace fs-6 mb-5 text-muted">6</span>And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters. 
+                                <span data-number="7" data-sid="GEN 1:7" class="v font-monospace fs-6 mb-5 text-muted">7</span>And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so. 
+                            </p>
+                            <p class="text-muted">
+                                &copy; Public Domain
+                            </p>
+                        </div>
+
+                        <!-- Query Search Result -->
+                        <div class="card card-body border-0 bg-light" id="query-result">
+                            <p class="fs-5 pb-3">Searches for: "gnash"</p>
+                            
+                            <div class="mb-5">
+                                <p class="fs-5">SIRACH 30:10</p>
+                                <p class="p lead">
+                                    Laugh not with him, lest thou have sorrow with him; And thou shalt <span class="text-warnin fw-bolder">gnash</span> thy teeth in the end.
+                                </p>
+                            </div>
+                            <div class="mb-5">
+                                <p class="fs-5">PSALMS 112:10</p>
+                                <p class="p lead">
+                                    The wicked shall see it, and be grieved; he shall <span class="text-warnin fw-bolder">gnash</span> with his teeth, 
+                                    and melt away: the desire of the wicked shall perish.
+                                </p>
+                            </div>
+                            <div class="mb-5">
+                                <p class="fs-5">LAMENTATIONS 2:16</p>
+                                <p class="p lead">
+                                    All thine enemies have opened their mouth wide against thee; they hiss and <span class="text-warnin fw-bolder">gnash</span> the teeth; 
+                                    they say, We have swallowed her up; certainly this is the day that we looked for; 
+                                    we have found, we have seen it.
+                                </p>
+                            </div>
+                            
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                  <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                  </li>
+                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                  </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Verse of the day -->
+    <section id="verse-of-the-day">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="card text-center border-0">
+                        <div class="card-header">
+                          <p class="h4">
+                              Verse of the Day ✨
+                          </p>
+                        </div>
+                        <div class="card-body">
+                          <blockquote class="blockquote mb-0">
+                            <p class="">
+                                For God so loved the world that he gave his one and only Son, 
+                                that whoever believes in him shall not perish but have eternal life.
+                            </p>
+                            <footer class="blockquote-footer fs-6">John 3:16</footer>
+                          </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

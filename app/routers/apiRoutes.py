@@ -46,7 +46,7 @@ async def process_file(input: InputBase):
         # voice_text = voice_text.lower()
         # print(voice_text)
         if input.function_type == "search":
-            input.query = "faith"
+            input.query = "gnash"
             # input.query = voice_text
             # if "chapter" or "verse" or "to" in voice_text:
                 # input.query = strip_keywords(voice_text)
