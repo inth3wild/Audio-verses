@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Typewriter from 'typewriter-effect';
 
 const Intro = () => {
+    const [bibleId, setBibleID] = useState(null);
     
     return (
         <section id="intro">
@@ -21,7 +23,6 @@ const Intro = () => {
                                 <span className="d-inline">
                                     Say: 
                                 </span>
-                                <p id="typewriter" className="d-inline">
                                     <Typewriter 
                                         options = {{
                                             strings: ['John 3:16', 'Luke chapter 7 verse 6 to 10', 'The Birth of Jesus Christ', 'Forgiveness'],
@@ -29,25 +30,24 @@ const Intro = () => {
                                             loop: true
                                         }}
                                     />
-                                </p>
                             </div>
                             
                     </div>
 
                     <div className="col-md-3 py-3">
                         <div className="">
-                            <select className="form-select form-select-sm" aria-label="Default select example">
-                                <option selected>Choose Bible Language</option>
+                            <select onChange={ (e) => {setBibleID(e.target.value); console.log(bibleId)} } className="form-select form-select-sm" aria-label="Default select example">
+                                <option>Choose Bible Language</option>
                                 <option value="1">English</option>
-                                <option value="1">Arabic</option>
-                                <option value="2">Dutch</option>
-                                <option value="3">German</option>
-                                <option value="4">Hausa</option>
-                                <option value="5">Hindi</option>
-                                <option value="6">Italian</option>
-                                <option value="7">Portuguese</option>
-                                <option value="8">Spanish</option>
-                                <option value="9">Yoruba</option>
+                                <option value="2">Arabic</option>
+                                <option value="3">Dutch</option>
+                                <option value="4">German</option>
+                                <option value="5">Hausa</option>
+                                <option value="6">Hindi</option>
+                                <option value="7">Italian</option>
+                                <option value="8">Portuguese</option>
+                                <option value="9">Spanish</option>
+                                <option value="10">Yoruba</option>
                             </select>
                         </div>
                     </div>
