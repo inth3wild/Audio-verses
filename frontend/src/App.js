@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Intro from './components/includes/Intro';
 import Navbar from "./components/includes/Navbar";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar /> 
+        <Intro />
       </div>
     </Router>
     
