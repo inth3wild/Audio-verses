@@ -1,9 +1,38 @@
 import { useState } from 'react';
 import Typewriter from 'typewriter-effect';
+import Result from './Result';
+import AudioReactRecorder, { RecordState } from 'audio-react-recorder'
+
+
 
 const Intro = () => {
     const [bibleId, setBibleID] = useState(null);
-    console.log(bibleId);
+    const [btnColor, setBtnColor] = useState('btn-primary');
+    const [btnText, setBtnText] = useState('Start recording');
+    const [recordState, setRecordState] = useState('stop');
+
+
+    const recordAudio = (e) => {
+        if (recordState === 'stop') {
+            setBtnColor('btn-danger');
+            setBtnText('Stop recording');
+
+            console.log("Null");
+            setRecordState(RecordState.START)
+
+        } else {
+            setBtnColor('btn-primary');
+            setBtnText('Start recording');
+
+            setRecordState(RecordState.STOP)
+            console.log("Not null");
+        }
+    }
+
+    const onStop = (audioData) => {
+        console.log(bibleId);
+        console.log('Audio: ', audioData);
+    }
 
     return (
         <section id="intro">
@@ -15,32 +44,31 @@ const Intro = () => {
                                 Voice powered bible search.
                             </div>
                         </h1>
-                            <p className="lead">
-                                Choose from a variety of bible versions and bible languages to search with <br /> 
-                                voice input for verses, keywords, references etc.
-                            </p>
+                        <p className="lead">
+                            Choose from a variety of bible versions and bible languages to search with <br />
+                            voice input for verses, keywords, references etc.
+                        </p>
 
-                            <div className="lead fw-lighter font-monospace">
-                                <span className="d-inline">
-                                    Say: 
-                                </span>
-                                    <Typewriter 
-                                        options = {{
-                                            strings: ['John 3:16', 'Luke chapter 7 verse 6 to 10', 'The Birth of Jesus Christ', 'Forgiveness'],
-                                            autoStart: true,
-                                            loop: true
-                                        }}
-                                    />
-                            </div>
-                            
+                        <div className="lead fw-lighter font-monospace">
+                            <span className="d-inline">
+                                Say:
+                            </span>
+                            <Typewriter
+                                options={{
+                                    strings: ['John 3:16', 'Luke chapter 7 verse 6 to 10', 'The Birth of Jesus Christ', 'Forgiveness'],
+                                    autoStart: true,
+                                    loop: true
+                                }} />
+                        </div>
+
                     </div>
 
                     <div className="col-md-3 py-3">
                         <div className="">
-                            <select onChange={ (e) => {
-                                setBibleID(e.target.value)
-                                }}
-                                className="form-select form-select-sm dropend" 
+                            <select onChange={(e) => {
+                                setBibleID(e.target.value);
+                            } }
+                                className="form-select form-select-sm dropend"
                                 aria-label="Default select example"
                             >
                                 <option value={null}> Choose Bible Language</option>
@@ -81,24 +109,31 @@ const Intro = () => {
                         </div>
                     </div>
 
+
+
                     <div className="col-md-6 mt-1 pt-2">
-                        <button type="button" className="btn btn-primary" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#content" 
-                        aria-expanded="false" aria-controls="collapseExample"> 
-                            <i className="bi bi-mic"></i>  Start recording
+                    <AudioReactRecorder state={recordState} onStop={onStop} canvasWidth={0} canvasHeight={0} />
+                        <button type="button" className={`btn ${btnColor}`}
+                            onClick = { (e) => { recordAudio(e) } }
+                            data-bs-toggle="collapse"
+                            data-bs-target="#content"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            <i className="bi bi-mic"></i>  {btnText}
                         </button>
 
-                        <button id="switch-context" className="btn btn-danger">
+                        {/* <button id="switch-context" className="btn btn-danger">
                             switch-context
-                        </button>
-                    
+                        </button> */}
+
                     </div>
-                        
+
 
                 </div>
             </div>
+
+            <Result />
         </section>
+
 
     );
 }

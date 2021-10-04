@@ -1,6 +1,6 @@
 const Result = () => {
     return (
-       <div>Res page</div> 
+        <p>Res page</p>
     );
 }
  
