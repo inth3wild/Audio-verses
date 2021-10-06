@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, UploadFile, File
 # from models.token import create_access_token, TokenData
 from models.api import InputBase, ResponseOut, NextInput
 from fastapi.encoders import jsonable_encoder
@@ -10,6 +10,7 @@ import speech_recognition as sr
 from pathlib import Path
 from apis.requests import search, search_next
 from utilities.strip_keywords import strip_keywords
+import wave, contextlib
 
 
 r = sr.Recognizer()
@@ -65,4 +66,31 @@ async def process_file(input: InputBase):
 # @router.post("/next", status_code=200, response_model=ResponseOut)
 async def return_next(input: NextInput):
     return search_next(**input.dict())
+
+
+@router.post("/blob")
+def accept_blob(file: UploadFile = File(...)):
+    print("Reached here ooo!!!!")
+    return{"msg":"GOOD BOY"}
+    # return{"name of your file":file.filename}
+
+
+@router.post("/file")
+async def create_file(request:Request):
+    print("Other end")
+    # print(await request.body())
+    # print(request.body)
+    sound = await request.body()
+    # with open("result.wav", "ab") as doc:
+    #     doc.write(sound)
+
+    with contextlib.closing(wave.open(sound,'r')) as f:
+        frames = f.getnframes()
+        rate = f.getframerate()
+        duration = frames / float(rate)
+        print(duration)
+        
+    return{"msg":"Maybe this???"}
+
+    # return {"file_size": len(file)}
 

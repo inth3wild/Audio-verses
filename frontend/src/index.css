@@ -14,3 +14,8 @@
 .audio-react-recorder{
   display: inline;
 }
+
+.dailyVerses.bibleVerse a {
+  text-decoration: none;
+  padding-top: 4px;
+}

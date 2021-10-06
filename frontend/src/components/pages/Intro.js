@@ -17,7 +17,6 @@ const Intro = () => {
             setBtnColor('btn-danger');
             setBtnText('Stop recording');
 
-            console.log("Null");
             setRecordState(RecordState.START)
 
         } else {
@@ -25,13 +24,35 @@ const Intro = () => {
             setBtnText('Start recording');
 
             setRecordState(RecordState.STOP)
-            console.log("Not null");
         }
     }
 
-    const onStop = (audioData) => {
+    const onStop = async (audioData) => {
         console.log(bibleId);
-        console.log('Audio: ', audioData);
+        // console.log('Audio: ', audioData);
+        const audioBlob = new Blob([JSON.stringify(audioData, null, 2)], {type : 'audio/wav'})
+
+        const obj = {hello: 'world'};
+        const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
+
+        // console.log( typeof audioData['blob']);
+        console.log(audioData);
+        // console.log(audioBlob.stream);
+        // console.log(blob);
+
+        let formData = new FormData();
+        formData.append('file', audioBlob, 'soundgasm.wav')
+
+        let response = await fetch('http://127.0.0.1:9000/file', {
+            method: 'POST',
+            body: formData,
+            // body: audioData.blob,
+            // body:"nbenzo",
+            headers: {'Content-type': 'audio/wav'}
+        });
+
+        let result = await response.json();
+        alert(result);
     }
 
     return (
@@ -68,41 +89,41 @@ const Intro = () => {
                             <select onChange={(e) => {
                                 setBibleID(e.target.value);
                             } }
-                                className="form-select form-select-sm dropend"
+                                className="form-select form-select-sm"
                                 aria-label="Default select example"
                             >
                                 <option value={null}> Choose Bible Language</option>
-                                <optgroup label="English">
+                                <optgroup label="English" className="fs-6 lead">
                                     <option value="de4e12af7f28f599-01">King James (Authorised) Version</option>
                                     <option value="06125adad2d5898a-01">The Holy Bible, American Standard Version</option>
                                     <option value="40072c4a5aba4022-01">Revised Version 1885</option>
                                 </optgroup>
-                                <optgroup label="Arabic">
+                                <optgroup label="Arabic" className="fs-6 lead">
                                     <option value="b17e246951402e50-01">Biblica® Open New Arabic Version 2012</option>
                                 </optgroup>
-                                <optgroup label="Dutch">
+                                <optgroup label="Dutch" className="fs-6 lead">
                                     <option value="ead7b4cc5007389c-01">Dutch Bible 1939</option>
                                 </optgroup>
-                                <optgroup label="German">
+                                <optgroup label="German" className="fs-6 lead">
                                     <option value="926aa5efbc5e04e2-01">German Luther Bible 1912 with Strong's numbers</option>
                                     <option value="95410db44ef800c1-01">German Unrevised Elberfelder Bible</option>
                                 </optgroup>
-                                <optgroup label="Hausa">
+                                <optgroup label="Hausa" className="fs-6 lead">
                                     <option value="0ab0c764d56a715d-01">Biblica® Open Hausa Contemporary Bible 2020</option>
                                 </optgroup>
-                                <optgroup label="Hindi">
+                                <optgroup label="Hindi" className="fs-6 lead">
                                     <option value="705aad6832c6e4d2-02">The Holy Bible in Hindi</option>
                                 </optgroup>
-                                <optgroup label="Italian">
+                                <optgroup label="Italian" className="fs-6 lead">
                                     <option value="41f25b97f468e10b-01">Diodati Bible 1885</option>
                                 </optgroup>
-                                <optgroup label="Portuguese">
+                                <optgroup label="Portuguese" className="fs-6 lead">
                                     <option value="90799bb5b996fddc-01">Translation for Translators in Brasilian Portuguese</option>
                                 </optgroup>
-                                <optgroup label="Spanish">
+                                <optgroup label="Spanish" className="fs-6 lead">
                                     <option value="b32b9d1b64b4ef29-01">The Holy Bible in Simple Spanish</option>
                                 </optgroup>
-                                <optgroup label="Yoruba">
+                                <optgroup label="Yoruba" className="fs-6 lead">
                                     <option value="b8d1feac6e94bd74-01">Biblica® Open Yoruba Contemporary Bible 2017</option>
                                 </optgroup>
                             </select>

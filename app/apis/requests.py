@@ -87,5 +87,3 @@ def search_next(**kwargs):
         )
     # result = response.json()
     return result
-
-
