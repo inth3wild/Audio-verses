@@ -10,6 +10,7 @@ const Intro = () => {
     const [btnColor, setBtnColor] = useState('btn-primary');
     const [btnText, setBtnText] = useState('Start recording');
     const [recordState, setRecordState] = useState('stop');
+    const [count, setCount] = useState(1)
 
 
     const recordAudio = (e) => {
@@ -29,30 +30,31 @@ const Intro = () => {
 
     const onStop = async (audioData) => {
         console.log(bibleId);
-        // console.log('Audio: ', audioData);
-        const audioBlob = new Blob([JSON.stringify(audioData, null, 2)], {type : 'audio/wav'})
+        console.log('Audio: ', audioData);
+        // const audioBlob = newww Blob([JSON.stringify(audioData, null, 2)], {type : 'audio/wav'})
 
-        const obj = {hello: 'world'};
-        const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
+        // const obj = {hello: 'world'};
+        // const blob = new Blob([JSON.stringify(obj, null, 2)], {type : 'application/json'});
 
         // console.log( typeof audioData['blob']);
-        console.log(audioData);
+        // console.log(audioData);
         // console.log(audioBlob.stream);
         // console.log(blob);
 
-        let formData = new FormData();
-        formData.append('file', audioBlob, 'soundgasm.wav')
+        const formData = new FormData();
+        formData.append('file', audioData.blob, `recorded${count}.wav`)
+        // formData.append('name', `NewFile${count}`)
+        setCount( count + 1 )
 
-        let response = await fetch('http://127.0.0.1:9000/file', {
+        let response = await fetch('http://127.0.0.1:9000/blob', {
             method: 'POST',
             body: formData,
-            // body: audioData.blob,
-            // body:"nbenzo",
-            headers: {'Content-type': 'audio/wav'}
+            headers: {'Content-Type': 'multipart/form-data'}
         });
 
         let result = await response.json();
-        alert(result);
+        console.log(result);
+        // alert(result);
     }
 
     return (
@@ -152,7 +154,7 @@ const Intro = () => {
                 </div>
             </div>
 
-            <Result />
+            {/* <Result /> */}
         </section>
 
 

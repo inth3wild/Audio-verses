@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request, UploadFile, File
 # from models.token import create_access_token, TokenData
-from models.api import InputBase, ResponseOut, NextInput
+from models.api import InputBase, ResponseOut, NextInput, RecordedAudio
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import HTMLResponse
 from config.config import settings
@@ -71,24 +71,26 @@ async def return_next(input: NextInput):
 @router.post("/blob")
 def accept_blob(file: UploadFile = File(...)):
     print("Reached here ooo!!!!")
-    return{"msg":"GOOD BOY"}
-    # return{"name of your file":file.filename}
+    # return{"msg":"GOOD BOY"}
+    return{"name of your file": file.filename}
 
 
 @router.post("/file")
-async def create_file(request:Request):
+async def create_file(file: bytes =  File(...)):
     print("Other end")
+    # print(len(file))
+    print(file.filename)
     # print(await request.body())
     # print(request.body)
-    sound = await request.body()
+    # sound = await request.body()
     # with open("result.wav", "ab") as doc:
     #     doc.write(sound)
 
-    with contextlib.closing(wave.open(sound,'r')) as f:
-        frames = f.getnframes()
-        rate = f.getframerate()
-        duration = frames / float(rate)
-        print(duration)
+    # with contextlib.closing(wave.open(sound,'r')) as f:
+    #     frames = f.getnframes()
+    #     rate = f.getframerate()
+    #     duration = frames / float(rate)
+    #     print(duration)
         
     return{"msg":"Maybe this???"}
 

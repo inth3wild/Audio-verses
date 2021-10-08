@@ -28,3 +28,7 @@ class ResponseOut(BaseModel):
     content: Optional[str]
     copyright: Optional[str]
     meta: Optional[dict]
+
+class RecordedAudio(BaseModel):
+    file: Optional[str]
+    audio: Optional[str] 
