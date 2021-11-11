@@ -78,7 +78,7 @@ const Intro = () => {
                             </span>
                             <Typewriter
                                 options={{
-                                    strings: ['John 3:16', 'Luke chapter 7 verse 6 to 10', 'The Birth of Jesus Christ', 'Forgiveness'],
+                                    strings: ['"John 3:16"', '"Luke chapter 7 verse 6 to 10"', '"The Birth of Jesus Christ"', '"Forgiveness"'],
                                     autoStart: true,
                                     loop: true
                                 }} />
